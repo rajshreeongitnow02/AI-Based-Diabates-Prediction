@@ -1,0 +1,9 @@
+1. Get data set installed (csv format)
+2. Install pip files and train model with python code
+3. Instead of Streamlit I am uplaoding this on Git Repo
+4. Documentation -        
+        ◦ Dataset description
+        ◦ Preprocessing techniques
+        ◦ Model training & results
+        ◦ Evaluation metrics
+5. Deploy on github and check if interactive page is user friendly or not
