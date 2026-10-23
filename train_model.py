@@ -6,7 +6,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.ensemble import RandomForestClassifier 
 from sklearn.metrics import(accuracy_score,precision_score,recall_score,f1_score,roc_auc_score,classification_report)
 
-datapath= "dataset/diabetes_binary_health.csv"#load data
+data_path = "Dataset/diabetes_binary_health (1).csv"
 df= pd.read_csv(data_path)
 print("Dataset loaded successfully!")
 print("Shape: ", df.shape)
@@ -16,14 +16,14 @@ print(df.head())
 x=df.drop("Diabetes", axis=1)#separating values
 y=df["Diabetes"]
 print("\nFeatures:")
-print(X.columns.tolist())
+print(x.columns.tolist())
 imputer=SimpleImputer(strategy="median")
 x= pd.DataFrame(
     imputer.fit_transform(x),
     columns=x.columns
 )
 print("\nMissing values handled successfully.")
-xtrain, xtest, ytrain, ytest = traintestsplit(x,y,testsize=0.20,randomstate=42,stratify=y)
+xtrain, xtest, ytrain, ytest = train_test_split(x,y,test_size=0.20,random_state=42,stratify=y)
 print("\nTraining samples:", len(xtrain))
 print("Testing samples:", len(xtest))
 
@@ -34,9 +34,9 @@ print("\nRandom Forest model trained successfully!")
 ypred= model.predict(xtest)
 yprob= model.predict_proba(xtest)[:, 1]
 acc= accuracy_score(ytest, ypred)
-preci=precision_score(ytest, ypred,zerodivision=0)
-recall=  recall_score(ytest,ypred,zerodivision=0)
-f1=f1_score(ytest,ypred,zerodivision=0)
+preci=precision_score(ytest, ypred,zero_division=0)
+recall=  recall_score(ytest,ypred,zero_division=0)
+f1=f1_score(ytest,ypred,zero_division=0)
 rocauc = roc_auc_score(ytest,yprob)
 
 print("\n MODEL EVALUATION ")
