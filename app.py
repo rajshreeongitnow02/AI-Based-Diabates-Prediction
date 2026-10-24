@@ -432,21 +432,15 @@ HTML = """
                 </p>
             </div>
         </div>
-        <div class="note">
-            <strong>Important:</strong>
-            This is an educational machine-learning project
-            and is not a medical diagnosis. Please consult a
-            qualified healthcare professional for medical advice.
-        </div>
+       
     </div>
     <footer>
-
         AI-Based Diabetes Prediction System
         <br><br>
-        Built with Python • Flask • Scikit-learn
-
+        Built with Python   
+        Flask 
+        Render 
     </footer>
-
 </body>
 </html>
 """
