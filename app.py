@@ -8,121 +8,77 @@ model = joblib.load("diabetes_random_forest.pkl")
 imputer = joblib.load("diabetes_imputer.pkl")
 
 # web app page
+```python
 HTML = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AI Diabetes Prediction</title>
+
     <style>
+
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
+
         body {
+            margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f8fc;
-            color: #172033;
-            min-height: 100vh;
+            background: #eaf4ff;
+            color: #1e293b;
         }
 
-        /* NAVBAR */
+        /* TOP HEADER */
 
-        .navbar {
-            width: 100%;
-            background: white;
-            border-bottom: 1px solid #e5eaf0;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 21px;
-            font-weight: 700;
-            color: #1769aa;
-        }
-
-        .logo span {
-            color: #19a974;
-        }
-
-        .nav-tag {
-            background: #eef7ff;
-            color: #1769aa;
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* HERO */
-
-        .hero {
-            max-width: 1100px;
-            margin: 55px auto 30px;
-            padding: 0 25px;
+        .header {
+            background: #2563eb;
+            color: white;
             text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
         }
 
-        .badge {
-            display: inline-block;
-            background: #e8f7f2;
-            color: #14865c;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 18px;
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
         }
 
-        .hero h1 {
-            font-size: 44px;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            color: #14213d;
+        .header p {
+            margin: 10px 0 0;
+            font-size: 15px;
+            color: #dbeafe;
         }
 
-        .hero h1 span {
-            color: #1769aa;
-        }
+        /* MAIN AREA */
 
-        .hero p {
-            max-width: 650px;
-            margin: auto;
-            color: #667085;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        /* MAIN CARD */
-
-        .main-card {
+        .container {
+            width: 90%;
             max-width: 850px;
-            margin: 35px auto 60px;
+            margin: 40px auto;
+        }
+
+        /* FORM CARD */
+
+        .card {
             background: white;
-            border-radius: 18px;
             padding: 35px;
-            box-shadow: 0 12px 40px rgba(30, 70, 100, 0.10);
-            border: 1px solid #e8edf3;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(37, 99, 235, 0.12);
+            border: 1px solid #dbeafe;
         }
 
-        .card-header {
-            margin-bottom: 30px;
-        }
-
-        .card-header h2 {
+        .card h2 {
+            margin-top: 0;
+            color: #1d4ed8;
             font-size: 24px;
-            margin-bottom: 7px;
-            color: #172033;
         }
 
-        .card-header p {
-            color: #7a8494;
-            font-size: 14px;
+        .card-description {
+            color: #64748b;
+            margin-bottom: 28px;
         }
 
         /* FORM */
@@ -130,7 +86,7 @@ HTML = """
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 22px;
+            gap: 20px;
         }
 
         .form-group {
@@ -139,349 +95,426 @@ HTML = """
         }
 
         label {
-            font-size: 14px;
-            font-weight: 600;
+            font-weight: bold;
             margin-bottom: 8px;
-            color: #344054;
+            color: #334155;
         }
 
         input,
         select {
             width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #d7dee8;
-            border-radius: 9px;
-            background: #fbfcfe;
-            color: #172033;
-            font-size: 14px;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #f8fafc;
+            font-size: 15px;
+            color: #1e293b;
             outline: none;
-            transition: 0.2s;
         }
 
         input:focus,
         select:focus {
-            border-color: #1769aa;
-            box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.10);
+            border-color: #2563eb;
             background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
         }
 
-        .full-width {
+        /* BUTTON */
+
+        .predict-btn {
             grid-column: 1 / -1;
-        }
-        button {
-            width: 100%;
-            border: none;
             padding: 15px;
-            border-radius: 10px;
-            background: #1769aa;
+            margin-top: 5px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
             color: white;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
-            margin-top: 5px;
         }
 
-        button:hover {
-            background: #12558b;
+        .predict-btn:hover {
+            background: #1d4ed8;
             transform: translateY(-1px);
-            box-shadow: 0 7px 18px rgba(23, 105, 170, 0.25);
         }
+
+        /* RESULT */
+
         .result {
             margin-top: 30px;
-            padding: 28px;
-            border-radius: 14px;
+            padding: 25px;
             text-align: center;
-            background: #f5fbff;
-            border: 1px solid #d8ecfa;
-        }
-
-        .result-label {
-            font-size: 13px;
-            color: #667085;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            border-radius: 12px;
+            background: #eff6ff;
+            border: 2px solid #93c5fd;
         }
 
         .result h2 {
-            font-size: 28px;
-            color: #1769aa;
-            margin-bottom: 10px;
+            margin: 0 0 10px;
+            color: #1d4ed8;
+            font-size: 25px;
         }
 
-        .probability {
+        .result p {
+            margin: 0;
+            color: #475569;
             font-size: 16px;
-            color: #475467;
         }
 
-        .probability strong {
-            color: #14865c;
-            font-size: 20px;
+        .result strong {
+            color: #2563eb;
+            font-size: 21px;
         }
 
-        /* INFO CARDS */
+        /* INFO BOXES */
 
         .info-section {
-            max-width: 850px;
-            margin: -25px auto 60px;
-            padding: 0 25px;
-        }
-
-        .info-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
+            margin-top: 25px;
         }
 
-        .info-card {
+        .info-box {
             background: white;
-            padding: 22px;
+            padding: 20px;
             border-radius: 12px;
-            border: 1px solid #e8edf3;
+            text-align: center;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 3px 12px rgba(37,99,235,0.07);
         }
 
-        .info-card h3 {
-            font-size: 15px;
+        .info-box .icon {
+            font-size: 28px;
             margin-bottom: 8px;
-            color: #1769aa;
         }
 
-        .info-card p {
-            font-size: 13px;
-            color: #667085;
-            line-height: 1.6;
+        .info-box h3 {
+            margin: 5px 0;
+            color: #1d4ed8;
+            font-size: 16px;
         }
+
+        .info-box p {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* NOTE */
 
         .note {
-            max-width: 850px;
-            margin: 0 auto 40px;
-            padding: 0 25px;
-            text-align: center;
-            font-size: 12px;
-            color: #7a8494;
-            line-height: 1.6;
+            margin-top: 25px;
+            padding: 15px 18px;
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+            color: #78350f;
+            font-size: 13px;
+            line-height: 1.5;
         }
+
+        /* FOOTER */
 
         footer {
-            background: #14213d;
-            color: #cbd5e1;
+            margin-top: 40px;
+            padding: 25px;
             text-align: center;
-            padding: 22px;
-            font-size: 12px;
+            background: #1e3a8a;
+            color: #dbeafe;
+            font-size: 13px;
         }
 
-        @media (max-width: 700px) {
+        /* MOBILE */
 
-            .hero {
-                margin-top: 35px;
+        @media (max-width: 650px) {
+
+            .header h1 {
+                font-size: 25px;
             }
 
-            .hero h1 {
-                font-size: 32px;
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .card {
+                padding: 22px;
             }
 
             .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            .full-width {
+            .predict-btn {
                 grid-column: auto;
             }
 
-            .info-grid {
+            .info-section {
                 grid-template-columns: 1fr;
             }
-
-            .main-card {
-                margin: 25px 15px 50px;
-                padding: 25px 20px;
-            }
         }
+
     </style>
 </head>
+
 <body>
 
-<nav class="navbar">
-    <div class="logo">
-        AI<span>Health</span>
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>🩺 AI-Based Diabetes Prediction</h1>
+
+        <p>
+            Machine Learning Based Health Risk Analysis System
+        </p>
+
     </div>
 
-    <div class="nav-tag">
-        Machine Learning Project
-    </div>
-</nav>
 
-<section class="hero">
-    <div class="badge">
-        AI-POWERED HEALTH ANALYSIS
-    </div>
-    <h1>
-        Diabetes Risk <span>Prediction</span>
-    </h1>
-    <p>
-        Enter basic health information and our machine-learning
-        model will estimate the likelihood of diabetes based on
-        the provided health parameters.
-    </p>
-</section>
+    <!-- MAIN CONTENT -->
 
-<div class="main-card">
-    <div class="card-header">
-        <h2>Patient Information</h2>
-        <p> Enter the required information below to generate a prediction. </p>
-    </div>
-    <form method="POST">
-        <div class="form-grid">
-            <div class="form-group">
-                <label>Age</label>
+    <div class="container">
 
-                <input
-                    type="number"
-                    name="age"
-                    min="18"
-                    max="100"
-                    placeholder="e.g. 45"
-                    required
-                >
-            </div>
+        <div class="card">
 
-            <div class="form-group">
-                <label>BMI</label>
-                <input
-                    type="number"
-                    name="bmi"
-                    min="10"
-                    max="60"
-                    step="0.1"
-                    placeholder="e.g. 25.4"
-                    required
-                >
-            </div>
+            <h2>Patient Health Information</h2>
 
-            <div class="form-group">
-                <label>Physical Activity</label>
-
-                <select name="physical_activity">
-
-                    <option value="0">
-                        Low / No
-                    </option>
-
-                    <option value="1">
-                        Active
-                    </option>
-
-                </select>
-            </div>
-
-
-            <div class="form-group">
-                <label>Blood Pressure</label>
-
-                <input
-                    type="number"
-                    name="blood_pressure"
-                    min="70"
-                    max="220"
-                    placeholder="e.g. 120"
-                    required
-                >
-            </div>
-
-
-            <div class="form-group">
-                <label>Cholesterol</label>
-
-                <select name="cholesterol">
-                    <option value="0">
-                        Normal
-                    </option>
-                    <option value="1">
-                        High
-                    </option>
-
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Glucose Level</label>
-
-                <input
-                    type="number"
-                    name="glucose"
-                    min="50"
-                    max="300"
-                    placeholder="e.g. 110"
-                    required >
-            </div>
-
-            <div class="full-width">
-
-                <button type="submit">
-                    Predict Diabetes Risk
-                </button>
-            </div>
-        </div>
-    </form>
-    {% if result %}
-    <div class="result">
-        <div class="result-label">
-            Prediction Result
-        </div>
-
-        <h2>
-            {{ result }}
-        </h2>
-
-        <div class="probability">
-            Estimated Diabetes Probability:
-            <strong>{{ probability }}%</strong>
-        </div>
-    </div>
-    {% endif %}
-</div>
-
-<section class="info-section">
-
-    <div class="info-grid">
-
-        <div class="info-card">
-            <h3>AI Model</h3>
-            <p>
-                Random Forest classification model trained
-                using patient health data.
+            <p class="card-description">
+                Enter the patient's health information below
+                to generate a diabetes risk prediction.
             </p>
+
+
+            <form method="POST">
+
+                <div class="form-grid">
+
+                    <!-- AGE -->
+
+                    <div class="form-group">
+
+                        <label>Age</label>
+
+                        <input
+                            type="number"
+                            name="age"
+                            min="18"
+                            max="100"
+                            placeholder="Enter age"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- BMI -->
+
+                    <div class="form-group">
+
+                        <label>BMI</label>
+
+                        <input
+                            type="number"
+                            name="bmi"
+                            min="10"
+                            max="60"
+                            step="0.1"
+                            placeholder="e.g. 24.5"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHYSICAL ACTIVITY -->
+
+                    <div class="form-group">
+
+                        <label>Physical Activity</label>
+
+                        <select name="physical_activity">
+
+                            <option value="0">
+                                Low / No
+                            </option>
+
+                            <option value="1">
+                                Active
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- BLOOD PRESSURE -->
+
+                    <div class="form-group">
+
+                        <label>Blood Pressure</label>
+
+                        <input
+                            type="number"
+                            name="blood_pressure"
+                            min="70"
+                            max="220"
+                            placeholder="e.g. 120"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CHOLESTEROL -->
+
+                    <div class="form-group">
+
+                        <label>Cholesterol</label>
+
+                        <select name="cholesterol">
+
+                            <option value="0">
+                                Normal
+                            </option>
+
+                            <option value="1">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- GLUCOSE -->
+
+                    <div class="form-group">
+
+                        <label>Glucose Level</label>
+
+                        <input
+                            type="number"
+                            name="glucose"
+                            min="50"
+                            max="300"
+                            placeholder="e.g. 100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="predict-btn"
+                    >
+                        🔍 Predict Diabetes Risk
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- RESULT -->
+
+            {% if result %}
+
+            <div class="result">
+
+                <h2>{{ result }}</h2>
+
+                <p>
+                    Estimated Diabetes Probability:
+                    <strong>{{ probability }}%</strong>
+                </p>
+
+            </div>
+
+            {% endif %}
+
         </div>
 
-        <div class="info-card">
-            <h3>Health Parameters</h3>
-            <p>
-                The model analyses age, BMI, physical activity,
-                blood pressure, cholesterol and glucose.
-            </p>
+
+        <!-- INFORMATION CARDS -->
+
+        <div class="info-section">
+
+            <div class="info-box">
+
+                <div class="icon">🤖</div>
+
+                <h3>AI Powered</h3>
+
+                <p>
+                    Uses a Random Forest machine-learning
+                    model for prediction.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="icon">📊</div>
+
+                <h3>6 Health Factors</h3>
+
+                <p>
+                    Analyzes age, BMI, activity, blood pressure,
+                    cholesterol and glucose.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="icon">⚡</div>
+
+                <h3>Fast Results</h3>
+
+                <p>
+                    Get a prediction immediately after
+                    submitting the information.
+                </p>
+
+            </div>
+
         </div>
 
-        <div class="info-card">
-            <h3>Prediction</h3>
-            <p>
-                The system provides an estimated probability
-                based on the trained machine-learning model.
-            </p>
+
+        <!-- DISCLAIMER -->
+
+        <div class="note">
+
+            <strong>Important:</strong>
+            This is an educational machine-learning project
+            and is not a medical diagnosis. Please consult a
+            qualified healthcare professional for medical advice.
+
         </div>
+
     </div>
-</section>
-<div class="note">
-    <strong>Important:</strong>
-    This application is an educational machine-learning project
-    and is not intended to provide medical diagnosis or replace
-    professional medical advice.
-</div>
-<footer>
-    AI-Based Diabetes Prediction System
-    <br>
-    Built with Python, Flask & Machine Learning
-</footer>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        AI-Based Diabetes Prediction System
+        <br><br>
+        Built with Python • Flask • Scikit-learn
+
+    </footer>
+
 </body>
 </html>
 """
