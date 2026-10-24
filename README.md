@@ -11,5 +11,6 @@ https://ai-based-diabates-prediction.onrender.com/
 
 
 There is only 30% use of AI in this project and rest is human work. 
-I have used AI to generate website's good colouring layout and for informative purposes like - how to publish website using 'RENDER' 
-                                                                                             - what packages were needed to install for the execution in my PC
+I have used AI to generate website's good colouring layout and for informative purposes like 
+- how to publish website using 'RENDER' /
+- what packages were needed to install for the execution in my PC
