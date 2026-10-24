@@ -1,4 +1,4 @@
-# AI-Based-Diabates-Prediction
+# AI Based Diabates Prediction
 Using supervised machine learning techniques, this project can be used in the medical field for healthcare professionals and individuals identify risk factors early, enabling timely preventive care and intervention.
 
 Used FLASK and RENDER for live website
