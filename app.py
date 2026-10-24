@@ -8,7 +8,6 @@ model = joblib.load("diabetes_random_forest.pkl")
 imputer = joblib.load("diabetes_imputer.pkl")
 
 # web app page
-```python
 HTML = """
 <!DOCTYPE html>
 <html lang="en">
@@ -518,8 +517,6 @@ HTML = """
 </body>
 </html>
 """
-```
-
 @app.route("/", methods=["GET", "POST"])
 def home():
     result = None
