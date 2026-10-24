@@ -9,6 +9,7 @@ I have used AI to generate website's good colouring layout and for informative p
 - what packages were needed to install for the execution in my PC
 
 **File	Purpose**
+
 train_model.py -	Loads data, preprocesses it, trains the Random Forest, evaluates it, and saves model artifacts.
 
 app.py -	Runs the Flask web application and performs predictions using the saved artifacts.
