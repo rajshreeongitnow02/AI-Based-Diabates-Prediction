@@ -3,11 +3,6 @@ Using supervised machine learning techniques, this project can be used in the me
 
 Used FLASK and RENDER for live website
 
-THE LIVE WEBSITE CAN BE ACCESSED FROM THIS LINK - ^_^ 
-
-https://ai-based-diabates-prediction.onrender.com/
-
-
 There is only 30% use of AI in this project and rest is human work. 
 I have used AI to generate website's good colouring layout and for informative purposes like 
 - how to publish website using 'RENDER' /
