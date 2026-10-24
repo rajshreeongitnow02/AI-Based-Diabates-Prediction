@@ -4,8 +4,8 @@ import joblib
 
 app = Flask(__name__)
 # load trained model
-model = joblib.load("Model/diabetes_random_forest.pkl")
-imputer = joblib.load("Model/diabetes_imputer.pkl")
+model = joblib.load("diabetes_random_forest.pkl")
+imputer = joblib.load("diabetes_imputer.pkl")
 
 # web app page
 HTML = """
