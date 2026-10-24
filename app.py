@@ -14,24 +14,17 @@ HTML = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>AI Diabetes Prediction</title>
-
     <style>
-
         * {
             box-sizing: border-box;
         }
-
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             background: #eaf4ff;
             color: #1e293b;
         }
-
-        /* TOP HEADER */
-
         .header {
             background: #2563eb;
             color: white;
@@ -79,9 +72,7 @@ HTML = """
             color: #64748b;
             margin-bottom: 28px;
         }
-
-        /* FORM */
-
+    
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -202,9 +193,6 @@ HTML = """
             font-size: 13px;
             line-height: 1.5;
         }
-
-        /* NOTE */
-
         .note {
             margin-top: 25px;
             padding: 15px 18px;
@@ -266,17 +254,9 @@ HTML = """
 
     <div class="header">
 
-        <h1>🩺 AI-Based Diabetes Prediction</h1>
-
-        <p>
-            Machine Learning Based Health Risk Analysis System
-        </p>
-
+        <h1>AI-Based Diabetes Prediction</h1>
+        <p> Machine Learning Based Health Risk Analysis System </p>
     </div>
-
-
-    <!-- MAIN CONTENT -->
-
     <div class="container">
 
         <div class="card">
@@ -288,17 +268,10 @@ HTML = """
                 to generate a diabetes risk prediction.
             </p>
 
-
             <form method="POST">
-
                 <div class="form-grid">
-
-                    <!-- AGE -->
-
                     <div class="form-group">
-
                         <label>Age</label>
-
                         <input
                             type="number"
                             name="age"
@@ -309,10 +282,6 @@ HTML = """
                         >
 
                     </div>
-
-
-                    <!-- BMI -->
-
                     <div class="form-group">
 
                         <label>BMI</label>
@@ -328,10 +297,6 @@ HTML = """
                         >
 
                     </div>
-
-
-                    <!-- PHYSICAL ACTIVITY -->
-
                     <div class="form-group">
 
                         <label>Physical Activity</label>
@@ -350,9 +315,6 @@ HTML = """
 
                     </div>
 
-
-                    <!-- BLOOD PRESSURE -->
-
                     <div class="form-group">
 
                         <label>Blood Pressure</label>
@@ -368,15 +330,9 @@ HTML = """
 
                     </div>
 
-
-                    <!-- CHOLESTEROL -->
-
                     <div class="form-group">
-
                         <label>Cholesterol</label>
-
                         <select name="cholesterol">
-
                             <option value="0">
                                 Normal
                             </option>
@@ -388,10 +344,7 @@ HTML = """
                         </select>
 
                     </div>
-
-
-                    <!-- GLUCOSE -->
-
+                    
                     <div class="form-group">
 
                         <label>Glucose Level</label>
@@ -414,7 +367,7 @@ HTML = """
                         type="submit"
                         class="predict-btn"
                     >
-                        🔍 Predict Diabetes Risk
+                         Predict Diabetes Risk
                     </button>
 
                 </div>
@@ -463,49 +416,29 @@ HTML = """
             <div class="info-box">
 
                 <div class="icon">📊</div>
-
                 <h3>6 Health Factors</h3>
-
                 <p>
                     Analyzes age, BMI, activity, blood pressure,
                     cholesterol and glucose.
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
                 <div class="icon">⚡</div>
-
                 <h3>Fast Results</h3>
-
                 <p>
                     Get a prediction immediately after
                     submitting the information.
                 </p>
-
             </div>
-
         </div>
-
-
-        <!-- DISCLAIMER -->
-
         <div class="note">
-
             <strong>Important:</strong>
             This is an educational machine-learning project
             and is not a medical diagnosis. Please consult a
             qualified healthcare professional for medical advice.
-
         </div>
-
     </div>
-
-
-    <!-- FOOTER -->
-
     <footer>
 
         AI-Based Diabetes Prediction System
