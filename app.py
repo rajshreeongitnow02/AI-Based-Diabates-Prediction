@@ -16,80 +16,53 @@ HTML = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Diabetes Prediction</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * {box-sizing: border-box;}
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             background: #eaf4ff;
-            color: #1e293b;
-        }
+            color: #1e293b;}
         .header {
             background: #2563eb;
             color: white;
             text-align: center;
             padding: 30px 20px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-        }
-
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12); }
         .header h1 {
             margin: 0;
-            font-size: 32px;
-        }
-
+            font-size: 32px; }
         .header p {
             margin: 10px 0 0;
             font-size: 15px;
-            color: #dbeafe;
-        }
-
-        /* MAIN AREA */
-
+            color: #dbeafe;}
         .container {
             width: 90%;
             max-width: 850px;
-            margin: 40px auto;
-        }
-
-        /* FORM CARD */
-
+            margin: 40px auto;   }
         .card {
             background: white;
             padding: 35px;
             border-radius: 15px;
             box-shadow: 0 5px 25px rgba(37, 99, 235, 0.12);
-            border: 1px solid #dbeafe;
-        }
-
+            border: 1px solid #dbeafe; }
         .card h2 {
             margin-top: 0;
             color: #1d4ed8;
-            font-size: 24px;
-        }
-
+            font-size: 24px; }
         .card-description {
             color: #64748b;
-            margin-bottom: 28px;
-        }
-    
+            margin-bottom: 28px; }
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
+            gap: 20px; }
         .form-group {
             display: flex;
-            flex-direction: column;
-        }
-
+            flex-direction: column; }
         label {
             font-weight: bold;
             margin-bottom: 8px;
-            color: #334155;
-        }
-
+            color: #334155; }
         input,
         select {
             width: 100%;
@@ -99,18 +72,12 @@ HTML = """
             background: #f8fafc;
             font-size: 15px;
             color: #1e293b;
-            outline: none;
-        }
-
+            outline: none; }
         input:focus,
         select:focus {
             border-color: #2563eb;
             background: white;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
-        }
-
-        /* BUTTON */
-
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
         .predict-btn {
             grid-column: 1 / -1;
             padding: 15px;
@@ -122,77 +89,53 @@ HTML = """
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
-        }
-
+            transition: 0.2s; }
         .predict-btn:hover {
             background: #1d4ed8;
-            transform: translateY(-1px);
-        }
-
-        /* RESULT */
-
+            transform: translateY(-1px);}
         .result {
             margin-top: 30px;
             padding: 25px;
             text-align: center;
             border-radius: 12px;
             background: #eff6ff;
-            border: 2px solid #93c5fd;
-        }
-
+            border: 2px solid #93c5fd; }
         .result h2 {
             margin: 0 0 10px;
             color: #1d4ed8;
-            font-size: 25px;
-        }
-
+            font-size: 25px; }
         .result p {
             margin: 0;
             color: #475569;
-            font-size: 16px;
-        }
-
+            font-size: 16px; }
         .result strong {
             color: #2563eb;
-            font-size: 21px;
-        }
-
-        /* INFO BOXES */
-
+            font-size: 21px; }
         .info-section {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin-top: 25px;
-        }
-
+            margin-top: 25px;  }
         .info-box {
             background: white;
             padding: 20px;
             border-radius: 12px;
             text-align: center;
             border: 1px solid #dbeafe;
-            box-shadow: 0 3px 12px rgba(37,99,235,0.07);
-        }
-
+            box-shadow: 0 3px 12px rgba(37,99,235,0.07); }
+            
         .info-box .icon {
             font-size: 28px;
-            margin-bottom: 8px;
-        }
-
+            margin-bottom: 8px;}
         .info-box h3 {
             margin: 5px 0;
             color: #1d4ed8;
-            font-size: 16px;
-        }
-
+            font-size: 16px; }
         .info-box p {
             margin: 5px 0 0;
             color: #64748b;
             font-size: 13px;
-            line-height: 1.5;
-        }
+            line-height: 1.5; }
         .note {
             margin-top: 25px;
             padding: 15px 18px;
@@ -203,57 +146,39 @@ HTML = """
             font-size: 13px;
             line-height: 1.5;
         }
-
-        /* FOOTER */
-
         footer {
             margin-top: 40px;
             padding: 25px;
             text-align: center;
             background: #1e3a8a;
             color: #dbeafe;
-            font-size: 13px;
-        }
+            font-size: 13px; }
 
-        /* MOBILE */
+        /* for mobile app */
 
         @media (max-width: 650px) {
-
             .header h1 {
-                font-size: 25px;
-            }
-
+                font-size: 25px;}
             .container {
                 width: 94%;
                 margin: 25px auto;
             }
-
             .card {
-                padding: 22px;
-            }
-
+                padding: 22px; }
             .form-grid {
                 grid-template-columns: 1fr;
             }
-
             .predict-btn {
-                grid-column: auto;
-            }
-
+                grid-column: auto; }
             .info-section {
                 grid-template-columns: 1fr;
             }
         }
-
     </style>
 </head>
 
 <body>
-
-    <!-- HEADER -->
-
     <div class="header">
-
         <h1>AI-Based Diabetes Prediction</h1>
         <p> Machine Learning Based Health Risk Analysis System </p>
     </div>
@@ -278,14 +203,10 @@ HTML = """
                             min="18"
                             max="100"
                             placeholder="Enter age"
-                            required
-                        >
-
+                            required>
                     </div>
                     <div class="form-group">
-
                         <label>BMI</label>
-
                         <input
                             type="number"
                             name="bmi"
@@ -298,15 +219,11 @@ HTML = """
 
                     </div>
                     <div class="form-group">
-
                         <label>Physical Activity</label>
-
                         <select name="physical_activity">
-
                             <option value="0">
                                 Low / No
                             </option>
-
                             <option value="1">
                                 Active
                             </option>
@@ -316,18 +233,14 @@ HTML = """
                     </div>
 
                     <div class="form-group">
-
                         <label>Blood Pressure</label>
-
                         <input
                             type="number"
                             name="blood_pressure"
                             min="70"
                             max="220"
                             placeholder="e.g. 120"
-                            required
-                        >
-
+                            required    >
                     </div>
 
                     <div class="form-group">
@@ -336,85 +249,51 @@ HTML = """
                             <option value="0">
                                 Normal
                             </option>
-
                             <option value="1">
                                 High
                             </option>
-
                         </select>
-
                     </div>
                     
                     <div class="form-group">
-
                         <label>Glucose Level</label>
-
                         <input
                             type="number"
                             name="glucose"
                             min="50"
                             max="300"
                             placeholder="e.g. 100"
-                            required
-                        >
-
+                            required >
                     </div>
-
-
-                    <!-- BUTTON -->
-
                     <button
                         type="submit"
-                        class="predict-btn"
-                    >
+                        class="predict-btn" >
                          Predict Diabetes Risk
                     </button>
-
                 </div>
-
             </form>
-
-
-            <!-- RESULT -->
-
             {% if result %}
-
             <div class="result">
-
                 <h2>{{ result }}</h2>
-
                 <p>
                     Estimated Diabetes Probability:
                     <strong>{{ probability }}%</strong>
                 </p>
-
             </div>
-
             {% endif %}
-
         </div>
-
-
-        <!-- INFORMATION CARDS -->
-
+        
         <div class="info-section">
-
             <div class="info-box">
-
                 <div class="icon">🤖</div>
-
                 <h3>AI Powered</h3>
-
                 <p>
                     Uses a Random Forest machine-learning
                     model for prediction.
                 </p>
-
             </div>
 
-
             <div class="info-box">
-
                 <div class="icon">📊</div>
                 <h3>6 Health Factors</h3>
                 <p>
@@ -422,7 +301,6 @@ HTML = """
                     cholesterol and glucose.
                 </p>
             </div>
-
             <div class="info-box">
                 <div class="icon">⚡</div>
                 <h3>Fast Results</h3>
@@ -480,12 +358,10 @@ def home():
     return render_template_string(
         HTML,
         result=result,
-        probability=probability
-    )
+        probability=probability)
 
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=5000,
-        debug=False
-    )
+        debug=False )
